@@ -1,214 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-
-:root {
-  /* color for main nav */
-  --bg-light-green: #8a6289;
-
-  /* color for (description and image (tittled)) nav. */
-  --bg-green-yellow: #cf7cd0;
-
-  /* color for border */
-  --b-dark-yellow: #bf2bc1;
-
-  /* color for new wrapper div */
-  --b-light-yellow: #fff;
+body {
+    height: 100vh;
 }
 
-.nav-bar {
-  width: 100%;
-  height: 60px;
-  justify-content: center;
-  background-color: var(--bg-light-green);
-  align-items: center;
-  text-align: center;
-  box-sizing: border-box;
-  border-bottom: solid 2px #b183d3;
-  color: rgb(255, 255, 255);
+.box .headinggg {
+    position: sticky;
+    top: 0;
+    height: 10vh;
+    background-color: rgb(61, 42, 165);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 20px 7px rgb(0 0 0 / 70%),
+        0 5px 20px rgb(0 0 0 / 70%);
 }
 
-.d-flex {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+h1 {
+    color: white;
+    font-family: 'Cinzel', serif;
+    font-size: 45px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.673);
+    user-select: none;
 }
 
-.students {
-  display: flex;
-  gap: 10px;
-  height: auto;
-  width: 100%;
-  background-color: #fefbe5;
+.container {
+    height: auto;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
 }
 
-.enroll-student {
-  margin-top: 30px;
-  padding-right: 100px;
-  box-sizing: border-box;
-  width: 45%;
-  height: auto;
+.container .form {
+    width: 50%;
 }
 
-#enrolled-students {
-  margin-top: 25px;
-  margin-bottom: 15px;
-  justify-content: center;
-  width: 55%;
-  height: calc(100vh - 70px);
-  overflow: scroll;
+.container .form form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 100px;
+    word-wrap: break-word;
 }
 
-.enroll-heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+#name,
+#email,
+#website,
+#url {
+    width: 335px;
+    padding: 10px;
+    border-radius: 2px;
+    border: none;
+    caret-color: red;
+    outline: 1px solid rgba(128, 128, 128, 0.26);
+    font-size: 15px;
+}
+
+#name:focus,
+#email:focus,
+#website:focus,
+#url:focus {
+    outline: 1px solid rgba(0, 0, 255, 0.711);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 8.6vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    gap: 9vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.website {
+    display: flex;
+    align-items: center;
+    gap: 7.4vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .gender {
-  padding-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 7.7vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.label {
-  display: flex;
-  font-size: 30px;
+.image {
+    display: flex;
+    align-items: center;
+    gap: 8.5vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-control {
-  margin-bottom: 16px;
-}
-
-.seperation-border {
-  box-sizing: border-box;
-  box-shadow: 0px 0px 3px 0px var(--bg-light-green);
-  width: 1.3px;
-  height: 70vh;
-  background: var(--bg-light-green);
-}
-
-@media screen and (max-width: 768px) {
-  hr.seperation-border {
-    height: 0;
-  }
-}
-
-.sectionHeading {
-  display: flex;
-  align-items: center;
-  background-color: var(--bg-green-yellow);
-  color: #fff;
-  box-sizing: border-box;
-  border: solid 2px var(--b-dark-yellow);
-}
-
-.sectionHeading>p {
-  padding: 10px 12px;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.description {
-  box-sizing: border-box;
-  border-right: solid 2px var(--b-dark-yellow);
-  margin-bottom: 0;
-  width: 70%;
-}
-
-.Image {
-  margin-bottom: 0;
-  width: 30%;
-}
-
-.infoText {
-  margin: 0;
-  padding: 0;
-}
-
-.userName {
-  font-weight: bold;
-}
-
-.wrapper {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 130px;
-  justify-content: space-between;
-  border: solid 2px var(--b-dark-yellow);
-  border-top: none;
-  animation: fadeIn 2s;
-  position: relative;
-}
-
-.userDeleteBtn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border: none;
-  background-color: transparent;
-  font-size: 25px;
-  transform: rotate(45deg);
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  button.userDeleteBtn {
-    display: block;
-  }
+.skills {
+    display: flex;
+    align-items: center;
+    gap: 9vw;
+    font-size: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
-.wrapper:hover .userDeleteBtn {
-  display: block;
+.text-p {
+    font-size: 1.18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.wrapper:nth-child(odd) {
-  background-color: rgb(255, 255, 255);
+.text-p label {
+    display: flex;
+    gap: 3px;
+    align-items: baseline;
 }
 
-.wrapper:nth-child(even) {
-  background-color: var(--b-light-yellow);
+.button {
+    display: flex;
+    gap: 5vw;
+    align-items: center;
+    justify-content: center;
 }
 
-.textInfoContainer {
-  width: 70%;
-  height: 100%;
-  box-sizing: border-box;
-  border-right: solid 2px var(--b-dark-yellow);
-  padding: 10px;
+.button #submit {
+    padding: 8px 40px;
+
+    font-size: 1.2rem;
+    background-color: rgb(0, 191, 255);
+    border: none;
+    box-shadow: 4px 4px 7px -2px rgb(0 0 0 / 70%);
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
 }
 
-.imageContainer {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  box-sizing: border-box;
+.button #reset {
+    padding: 8px 40px;
+    background-color: rgb(105, 0, 0);
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 4px 4px 7px -2px rgb(0 0 0 / 70%);
 }
 
-.userImage {
-  height: auto;
-  width: 105px;
+.button #submit:active,
+.button #reset:active {
+    background-color: black;
+    box-shadow: none;
 }
 
-.fadeIn {
-  animation: fadeIn 2s;
+.container .line {
+    margin: auto;
+    width: 3px;
+    height: 80vh;
+    background-color: brown;
+    border-radius: 33px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+.op-box {
+    width: 50%;
 
-  to {
-    opacity: 1;
-  }
+}
+
+.output {
+    padding: 45px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid red;
+}
+
+.output .cardContainer {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-y: auto;
+    height: 73vh;
+}
+
+.output .card {
+    height: auto;
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.132);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 10px 0;
+    gap: 5vw;
+}
+
+.card img {
+    border-radius: 0.5rem;
+    width: 130px;
+    height: 150px;
+}
+
+.card .info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.card .info a {
+    color: rgb(43, 43, 255);
+    text-decoration: none;
+}
+
+.card .info a:hover {
+    text-decoration: underline;
+}
+
+.card .info button {
+    padding: 2px 15px;
+    border-radius: 25px;
+    border: none;
+    background-color: brown;
+    color: white;
+    box-shadow: 4px 4px 7px -2px rgb(0 0 0 / 70%);
+    cursor: pointer;
+}
+
+.card .info button:active {
+    background-color: black;
+    box-shadow: none;
+}
+@media only screen and (max-width:1000px) {
+    .container .line {
+        display: none;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .container .form {
+        width: 100%;
+    }
+
+    .op-box {
+        width: 100%;
+
+    }
+
+    .name,
+    .email,
+    .website,
+    .image,
+    .skills,
+    .gender {
+        justify-content: space-around;
+    }
+
+    .gender {
+        padding-right: 17vw;
+    }
+}
+
+@media only screen and (max-width:700px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    .container .form form {
+        padding: 27px;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .output .card {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .card img {
+        margin: auto;
+
+    }
 }
