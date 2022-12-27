@@ -1,159 +1,79 @@
-var form = document.querySelector("#userForm");
-const allUsersData = [];
-const resetForm = function () {
-  form.classList.remove('was-validated')
-  const name = document.getElementById('name');
-  name.value = "";
+let submitBtn = document.getElementById("submit");
 
-  const email = document.getElementById('email');
-  email.value = "";
+const info = {
+    student_name: '',
+    email: '',
+    url: '',
+    website: '',
+    gender: '',
+    skillArr: [],
+}
 
-  const website = document.getElementById('website');
-  website.value = "";
+const getData = () => {
+    info.student_name = document.getElementById('name').value;
+    info.email = document.getElementById('email').value;
+    info.url = document.getElementById('url').value;
+    info.website = document.getElementById('website').value;
+    info.gender = document.querySelector('input[name="male-female"]:checked').value;
+    let skills = document.querySelectorAll('.checkbox:checked');
 
-  const image = document.getElementById('image');
-  image.value = "";
+    info.skillArr = [];
+    skills.forEach((item) => {
+        info.skillArr.push(item.value);
+    })
 
-  const genderEl = document.querySelectorAll('input[name="gender"]');
-  for (const rb of genderEl) {
-    rb.checked = false;
-  }
-
-  const skillEl = document.querySelectorAll('input[name="skill"]');
-  for (const rb of skillEl) {
-    rb.checked = false;
-  }
-};
-const getData = function () {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const website = document.getElementById('website').value;
-  const image = document.getElementById('image').value;
-  let gender;
-  let skills = [];
-
-  const genderEl = document.querySelectorAll('input[name="gender"]');
-  for (const rb of genderEl) {
-    if (rb.checked) {
-      gender = rb.value;
-      break;
+    if (localStorage.getItem("infoSection") === null) {
+        infoItem = [];
     }
-  };
-
-  const skillEl = document.querySelectorAll('input[name="skill"]');
-  for (const rb of skillEl) {
-    if (rb.checked) {
-      skills.push(rb.value);
+    else {
+        infoItem = JSON.parse(localStorage.getItem("infoSection"))
     }
-  }
-  return { name, email, website, image, gender, skills };
-};
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  if (form.checkValidity()) {
-    const data = getData();
-    allUsersData.push(data);
-    printResult(data);
-    resetForm();
+    infoItem.push(info);
+    localStorage.setItem("infoSection", JSON.stringify(infoItem));
+}
 
+const showData = () => {
+    let cardContainer = document.getElementById("cardContainer");
 
-  } else {
-    form.classList.add('was-validated');
-  };
-  removeSpan();
-});
+    let cards = '';
 
-function removeSpan() {
-  var span = document.getElementById("span");
-  if (span) {
-    span.remove();
-  }
+    let getLocalStorage = localStorage.getItem("infoSection");
 
-};
-
-
-function printResult(data) {
-  const resultEl = document.getElementById('enrolled-students');
-  let sectionHeading = null;
-  if (allUsersData.length == 1) {
-
-    sectionHeading = document.createElement('div');
-    const description = document.createElement('p');
-    description.innerHTML = "Description";
-    description.className = "description";
-
-    const image = document.createElement('p');
-    image.innerHTML = "Image"
-    image.className = "Image";
-
-    sectionHeading.className = "sectionHeading";
-    sectionHeading.append(description, image);
-  };
-
-  const wrapper = document.createElement('div');
-  wrapper.className = "wrapper";
-  wrapper.addEventListener('click', function (e) {
-    console.log(e.target.className);
-    if (e.target.className.includes('userDeleteBtn')) {
-      console.log('aaadfasdfasdf');
-      e.currentTarget.remove();
+    if (getLocalStorage === null) {
+        console.log("null");
     }
+    else {
+        cardDivArr = JSON.parse(getLocalStorage);
 
-  });
+        cardDivArr.forEach((item, index) => {
 
-  const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = "+";
-  deleteBtn.className = "userDeleteBtn";
+            cards += `<div class="card">
+            <img src=${item.url} alt="Profile Picture">
+            <div class="info">
+                <p><strong>Name</strong> : ${item.student_name}</p>
+                <p><strong>Email</strong> : ${item.email}</p>
+                <p><strong>Website</strong> : <a href="${item.website}">Click here</a></p>
+                <p><strong>Gender</strong> : ${item.gender}</p>
+                <p><strong>Skills</strong> : ${item.skillArr.join(", ")}</p>
+                <button onclick="deleteData(${index})">Delete</button>
+            </div>
+        </div>`;
+        })
+    }
+    cardContainer.innerHTML = cards;
+}
 
-  const textInfoContainer = document.createElement('div');
-  textInfoContainer.className = "textInfoContainer";
+const deleteData = (index) => {
+    let getList = JSON.parse(localStorage.getItem("infoSection"));
+    getList.splice(index, 1);
 
-  const imageContainer = document.createElement('div');
-  imageContainer.className = "imageContainer";
-
-  const imageHyperlink = document.createElement('a');
-  imageHyperlink.href = data.image;
-  imageHyperlink.target = "_blank";
-
-
-  let name = document.createElement('p');
-  name.className = "infoText userName";
-  name.innerHTML = data.name;
-
-  let gender = document.createElement('p');
-  gender.className = "infoText gender";
-  gender.innerHTML = data.gender;
-
-  let email = document.createElement('p');
-  email.className = "infoText email";
-  email.innerHTML = data.email;
-
-  let website = document.createElement('a');
-  website.className = "infoText website";
-  website.innerHTML = data.website;
-  website.href = data.website;
-  website.target = "_blank";
-
-  let skills = document.createElement('p');
-  skills.className = "infoText skills";
-  skills.innerHTML = data.skills.join(', ');
+    localStorage.setItem("infoSection", JSON.stringify(getList));
+    window.location.reload();
+}
 
 
-  let userImage = document.createElement('img');
-  userImage.className = "userImage";
-  userImage.src = data.image;
 
-
-  textInfoContainer.append(name, gender, email, website, skills);
-  imageHyperlink.appendChild(userImage);
-  imageContainer.appendChild(imageHyperlink);
-
-  wrapper.append(textInfoContainer, imageContainer, deleteBtn);
-
-  if (sectionHeading == null) {
-    resultEl.append(wrapper);
-  } else {
-    resultEl.append(sectionHeading, wrapper)
-  };
-
-};
+submitBtn.addEventListener(('click'), () => {
+    getData();
+    showData();
+})
